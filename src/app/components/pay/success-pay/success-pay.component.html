@@ -1,0 +1,37 @@
+
+<div class="mt-4">
+@if (!!loading) {
+  <div class="w-100 flex-center">
+    <mat-spinner diameter="120"></mat-spinner>
+  </div>
+}
+<div class="flex-column flex-center p-2">
+  @if (!!generatedKey) {
+    <h5 class="mb-1">{{'REPORT.YOUR' | translate: { Default: 'Your key is :' } }}</h5>
+    <span>
+      {{generatedKey}}
+      <button mat-raised-button class="border-solid-green" color="white" matTooltip="copy" [cdkCopyToClipboard]="generatedKey">
+            <mat-icon>content_copy</mat-icon> {{'BTN.COPY' | translate: { Default: 'Copy' } }}
+      </button>
+    </span>
+    @if(!!numLeftReports) {
+      <h5>{{numLeftReports}} {{'REPORT.REPORTS_LEFT' | translate: { Default: 'reports left' } }}</h5>
+    }
+    <h5 class="mt-1">{{'REPORT.PLEASE_SAVE' | translate: { Default: 'Please save it' } }}</h5>
+  }
+  @if(!generatedReport && !loading) {
+    <img class="m-2" alt="car croc" class="cursor-default" src="assets/check/s.png">
+  }
+</div>
+
+
+@if (!!error) {
+  <div class="w-100 text-center">
+    <img alt="car croc" class="cursor-default" src="assets/check/f.png" >
+  </div>
+}
+
+@if(!!generatedReport) {
+  <app-report-info [generatedReport]="generatedReport"></app-report-info>
+}
+</div>

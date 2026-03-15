@@ -1,0 +1,47 @@
+
+img {
+    width: auto;
+    max-height: 170px;
+    aspect-ratio: auto;
+}
+.cards {
+    mat-icon {
+        transform: scale(1.8);
+    }
+    .card {
+        background-color: white;
+        margin-top: 1.1em;
+        border: 1px solid;
+        border-radius: 16px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+    .content {
+        span {
+            margin-left: 0.1em;
+            margin-right: 0.1em;
+            font-size: 1.0em; 
+        }
+        .b {
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        input {
+            font-size: 1.4em !important;
+            font-weight: bold;
+            width: 78px;
+            text-align: center;
+        }
+
+    }
+}
+
+h2, p {
+    font-weight: 600;
+}
+span {
+    text-align: center;
+    padding-left: 0.2rem;
+}

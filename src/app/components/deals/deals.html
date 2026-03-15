@@ -1,0 +1,74 @@
+<div class="w-100 pt-1 pb-4 theme-container m-l-r-auto">
+    <div class="flex-row-wrap">
+      <!-- <div width-xm="100" class="flex-47 p-2 flex-row-wrap background-color card"> -->
+      <div class="flex-90 flex-row-wrap">
+          <div class="w-30 text-center hide-xm">
+              <img width="100%" src="assets/img/croc/discaunt.png" class=""/>
+          </div>
+          <div class="w-100 text-center hide-gt-xm">
+              <img width="100%" src="assets/img/croc/discaunt.png" class=""/>
+          </div>
+              
+          <div width-xm="100" class="w-65 p-2 m-t-b-auto card">
+              <span> {{'DEAL.INTRO' | translate: {Default: 'The Wholesale/Car Dealer program offers budget-friendly package deals with low rates and expanded access, including the ability to unlock and track your full report history. Dealers can also integrate the service directly into their website to generate additional income through car report offerings.'} }}</span>
+              <h3 class="mt-2 mb-2 text-center">{{'DEAL.GET_NOW' | translate: {Default: 'Get your deal now!'} }}</h3>
+          </div>
+      </div>
+    </div>
+
+    <h2 class="text-center mt-2 mb-2">
+      {{ 'DEAL.MULTI_DEAL' | translate: { Default: 'Pay once and get KEY for access to multiple reports in one discounted package!'} }}
+    </h2>
+
+    <div class="flex-row-wrap cards">
+      @for (deal of smPackageDeal; track deal) {
+        @if (deal) {
+        <button mat-raised-button class="button-strech m-l-r-auto card" (click)="goToDeal(deal)">
+          <div class="content">
+              <span><span class="b">Get {{deal.num}} {{ 'REPORT.TYPE_' + deal.type | translate}}</span> for the price of <span class="b">{{deal.sumPrice}}{{ 'CURRENCY.' + deal.currency | translate: { Default: deal.currency } }}</span></span>
+              <p>Price per report <span class="b">{{deal.price}}{{ 'CURRENCY.' + deal.currency | translate: { Default: deal.currency } }}</span></p>
+          </div>
+        </button>
+        }
+      }
+    
+      <div class="m-l-r-auto card content pl-3 pr-3">
+        <h3 class="w-100 text-center">Calculate</h3>
+        <span>Get <span class="b">  
+            <input matInput type="number" placeholder="1" class="num-input" (input)="customCalc($event.target.value)">
+          </span> {{ 'REPORT.TYPE_TYPE_PACF' | translate: {Default: 'CarCroc`s'} }}. Price per report <span class="b">
+            <input matInput type="number" placeholder="{{priceCustom}}" [value]="priceCustom" readonly="true"/> {{ 'CURRENCY.USD' | translate: { Default: '$' } }}
+          </span>
+        </span>
+      </div>
+    </div>
+
+    
+    <h2 class="text-center mt-4 mb-2">
+      {{ 'DEAL.MARCHANT' | translate: { Default: 'Wholesale / Car Dealer Special'} }}
+    </h2>
+    <div class="w-100 flex-row-wrap">
+      <div width-xm="100" class="w-48 mt-1 m-l-r-auto">
+        <ul class="mb-5">
+          @for (bgDeal of bgPackageDeal; track bgDeal) {
+            <li>Get {{bgDeal.num}} {{ 'REPORT.TYPE_TYPE_PACF' | translate: {Default: 'CarCroc`s'} }} reports, price per report {{bgDeal.price}}{{ 'CURRENCY.' + bgDeal.currency | translate: { Default: bgDeal.currency } }}</li>
+          }
+        </ul>
+        <a href="/contact"><h3>Concatc Us</h3></a>
+      </div>
+      <div width-xm="100" class="w-48 mt-1 text-center">
+        <p>Integrate report view to you website.</p>
+        <p>Give the opportunity to your customers to generate own reports and make additional income from it.</p>
+        <div class="mt-4">
+          <zero-conf></zero-conf>
+        </div>
+      </div>
+
+      
+      <div class="w-90 mt-4 m-l-r-auto text-center">
+          <a mat-raised-button class="button-strech" color="primary" routerLink="/contact">
+              <h2 class="p-3">{{ 'CONTACT.TITLE' | translate:{ Default: 'Къде да ни намериш?' } }}</h2>
+          </a>
+      </div>
+    </div>
+</div>

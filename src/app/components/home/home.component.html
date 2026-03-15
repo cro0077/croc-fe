@@ -1,0 +1,48 @@
+<div class="home-img-wrapper">
+    <div class="pl-0 pr-0 pt-0 pb-2 theme-container">
+        <div class="main-container">
+            <div class="flex-row-wrap">
+                
+                <div width-xm="100" class="w-48 m-l-r-auto">
+                    <div class="text-center">
+                        <img width="172px" src="assets/img/croc/logo.png" />
+                        <h2>{{ 'ABOUTUS.TITLE' | translate: {Defautlt: 'Get a vehicle history report / car report'} }}</h2>
+                    </div>
+                    <p class="">{{ 'ABOUTUS.MAIN' | translate:{ Default: 'Check Your Car History — Find out complete vehicles history: mileage, owners, accidents, thefts. Minimize your risk and check your vehicles history by VIN number.' } }}</p>
+                </div>
+
+                <div width-xm="100" class="w-50 map">
+                    @if (isBrowser) {
+                        <img width="100%" src="assets/img/croc/one.png" class=""/>
+                    }
+                </div>
+                
+                <div class="w-90 mt-4 m-l-r-auto text-center" style="max-width: 438px;">
+                    @if (!!infoForm) {
+                        <form [formGroup]="infoForm">
+                            <mat-form-field  appearance="outline" class="w-100 mt-1">
+                                <mat-icon matPrefix class="mr-1 text-muted">
+                                    <svg width="20" height="20" viewBox="0 0 20 16" fill="#6bb89e" stroke="#111" stroke-width="1.2" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M17.5 5H16.5L14.5 1C14.2 0.4 13.6 0 13 0H7C6.4 0 5.8 0.4 5.5 1L3.5 5H2.5C1.7 5 1 5.7 1 6.5V11.5C1 11.8 1.2 12 1.5 12H2V13.5C2 14.3 2.7 15 3.5 15H4.5C5.3 15 6 14.3 6 13.5V12H14V13.5C14 14.3 14.7 15 15.5 15H16.5C17.3 15 18 14.3 18 13.5V12H18.5C18.8 12 19 11.8 19 11.5V6.5C19 5.7 18.3 5 17.5 5ZM5 9C4.4 9 4 8.6 4 8C4 7.4 4.4 7 5 7C5.6 7 6 7.4 6 8C6 8.6 5.6 9 5 9ZM15 9C14.4 9 14 8.6 14 8C14 7.4 14.4 7 15 7C15.6 7 16 7.4 16 8C16 8.6 15.6 9 15 9ZM3.5 5L5.1 1.5C5.2 1.2 5.6 1 6 1H14C14.4 1 14.8 1.2 14.9 1.5L16.5 5H3.5Z"/>
+                                    </svg>
+                                </mat-icon>
+                                <mat-label>VIN</mat-label>
+                                <input matInput placeholder="VIN" formControlName="vin" autocomplete="off" required>
+                                @if (infoForm.get('vin')?.errors) {
+                                <mat-error>{{'ERROR.VIN_REQUIRED' | translate:{ Default: "Vin Required"} }}</mat-error>
+                                }
+                            </mat-form-field>
+                        </form>
+                        <button mat-raised-button class="vin-search-btn button-strech" (click)="onConfirm()">
+                            <h2>{{ 'REPORT.TITLE' | translate:{ Default: 'Get vehicle history report by VIN' } }}</h2>
+                        </button>
+                    }
+                </div>
+                <div class="w-100">
+                    <app-how-to-order/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

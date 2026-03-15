@@ -1,0 +1,23 @@
+<mat-toolbar id="main-toolbar" [class.blue-transp]="isColorChanged">
+  <div class="flex-row-wrap w-100">
+
+    <div class="w-100">
+      <div class="theme-container flex-between pb-0 pt-0 pr-0">
+        <a class="logo" routerLink="/">
+          <img width="145px" src="assets/img/croc/logo.png" />
+        </a>
+        <div class="flex-row-wrap flex-end">
+          <div class="mt-1 ml-2 hide-xm">
+            <a mat-raised-button class="mr-1" color="primary" routerLink="/report">
+              <h3>
+                {{'REPORT.S_TITLE' | translate: {Default: 'Car Report'} }}
+              </h3>
+            </a>
+          </div>
+
+          <app-lang></app-lang>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-toolbar>

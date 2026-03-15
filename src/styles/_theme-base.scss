@@ -1,0 +1,56 @@
+@use 'sass:map';
+@use '@angular/material' as mat;
+
+@mixin theme-reset($theme) {
+    $color-config:  mat.m2-get-color-config($theme);
+    $primary:       map.get($color-config, 'primary');
+    $accent:        map.get($color-config, 'accent');
+    $warn:          map.get($color-config, 'warn');
+    $foreground:    map.get($color-config, 'foreground');
+    $background:    map.get($color-config, 'background');
+
+
+    // #main-toolbar {
+    //     border-bottom: 1px solid  mat.m2-get-color-from-palette($primary);
+    // }
+    header {
+        .logo {
+            display: flex;
+            svg {
+                fill: mat.m2-get-color-from-palette($primary);
+            }
+        }
+        
+    }
+    .primary-color {
+        color: mat.m2-get-color-from-palette($primary);
+    }
+    .primary-color-background {
+        background-color: mat.m2-get-color-from-palette($primary) !important;
+    }
+    .primary-color-fill {
+        fill: mat.m2-get-color-from-palette($primary);
+    }
+    .primary-border-color {
+        border-color: mat.m2-get-color-from-palette($primary) !important;
+    }
+    .accent-color {
+        color: mat.m2-get-color-from-palette($accent);
+    }
+    .warn-color {
+        color: mat.m2-get-color-from-palette($warn);
+    }
+    .background-primary-color {
+        background-color: mat.m2-get-color-from-palette($primary);
+    }
+    .secondary-color {
+        color: mat.m2-get-color-from-palette($primary, 100);
+    }
+    .background-secondary-color {
+        background-color: mat.m2-get-color-from-palette($primary, 100);
+    }
+    .divider {
+        // border-top: 1px solid mat.m2-get-color-from-palette($foreground, divider);
+        border-top: 1px solid  mat.m2-get-color-from-palette($primary);
+    }
+}

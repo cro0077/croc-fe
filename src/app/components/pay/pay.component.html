@@ -1,0 +1,78 @@
+<div class="p-3">
+  <div class="theme-container">
+    <div class="flex-column flex-center text-center">
+      <div class="main-contetn">
+
+        @if (!!loading) {
+          <mat-spinner class="m-2" diameter="95"></mat-spinner>
+        } 
+        @if (!!price) {
+        <div class="flex-100">
+          <button mat-button class="button-strech">
+            <h4>{{ 'REPORT.TYPE_' + type | translate}}</h4>
+            @if (price.numReports) {
+              <span>{{price.numReports}} {{'REPORT.REPORTS' | translate: {Default: 'reports'} }}, 
+                {{price.price / price.numReports}} {{'CURRENCY.' + price.currency | translate: {Default: '$'} }} {{'REPORT.PER_REPORT' | translate: {Default: 'per report'} }}
+              </span>
+            }
+            <img [src]="getReportIcon(type!)" class="m-1">
+          </button>
+        </div>
+        @if (!!vin) {
+          <h3>VIN: {{vin}}</h3>
+        }
+        @if (!!infoForm) {
+          <h4>{{'PRICE' | translate: {Default: 'Price'} }} {{price.price}} {{'CURRENCY.' + price.currency | translate: {Default: '$'} }}</h4>
+          @if (!!showActionButtons) {
+            <form [formGroup]="infoForm">
+              <mat-form-field  appearance="outline" class="w-100 mt-1">
+                <mat-icon matPrefix class="mr-1 text-muted">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="#6bb89e" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                  </svg>
+                </mat-icon>
+                <mat-label>{{'PROFILE.NAME' | translate: { Default: 'Name' } }}</mat-label>
+                <input matInput placeholder="{{'PROFILE.NAME' | translate: { Default: 'Name' } }}" formControlName="name" autocomplete="off" required>
+                @if (infoForm.get('name')?.hasError('required')) {
+                <mat-error>{{'ERROR.NAME_REQUIRED' | translate: { Default: 'Name is required' } }}</mat-error>
+                }
+                @if (infoForm.get('name')?.hasError('minlength')) {
+                <mat-error>{{'ERROR.NAME_LENGTH' | translate: { Default: 'Name isn`t long enough, minimum of 2 characters' } }}</mat-error>
+                }
+              </mat-form-field>
+              <mat-form-field  appearance="outline" class="w-100 mt-1">
+                  <mat-icon matPrefix class="mr-1 text-muted">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#6bb89e" stroke="#111" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                      <rect x="2" y="5" width="20" height="14" rx="3"/>
+                      <path d="M2 8l10 7 10-7"/>
+                    </svg>
+                  </mat-icon>
+                  <mat-label>{{'PROFILE.EMAIL' | translate: { Default: 'Email' } }}</mat-label>
+                  <input [disabled]="true" matInput placeholder="{{'PROFILE.EMAIL' | translate: { Default: 'Email' } }}" formControlName="email" autocomplete="off" required>
+                  @if (infoForm.get('email')?.hasError('required')) {
+                  <mat-error>{{'ERROR.EMAIL_REQUIRED' | translate: { Default: 'Email is required' } }}</mat-error>
+                  }
+                  @if (infoForm.get('email')?.hasError('email') || infoForm.get('email')?.hasError('invalidEmail')) {
+                  <mat-error>{{'ERROR.EMAIL_INVALID' | translate: { Default: 'Invalid email address' } }}</mat-error>
+                  }
+              </mat-form-field>
+            </form>
+
+            <div class="flex-between m-2">
+              <button mat-raised-button color="primary" (click)="onCancel()">
+                {{'BTN.CANCEL' | translate: { Default: 'Cancel' } }}
+              </button>
+              <button mat-raised-button [disabled]="!infoForm.valid" color="accent" (click)="onConfirm()">
+                {{'BTN.CONFIRM' | translate: { Default: 'Confirm' } }}
+              </button>
+            </div>
+          }
+        }
+        }
+      </div>
+    </div>
+
+    <router-outlet></router-outlet>
+  </div>
+</div>

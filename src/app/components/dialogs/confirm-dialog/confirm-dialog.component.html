@@ -1,0 +1,14 @@
+<div mat-dialog-title class="mt-4 ml-4 mr-4 mb-2"> 
+    <div class="text-center"> 
+        <h4 class="mb-1">{{title}}</h4>
+    </div> 
+</div>
+  
+<div mat-dialog-content class="text-center mb-2">
+    <p>{{message}}</p>
+</div>
+  
+<div mat-dialog-actions class="w-100 text-center pb-4">
+    <button mat-button (click)="onDismiss()">{{ 'BTN.NO' | translate: {Default: "No"} }}</button>
+    <button mat-raised-button color="primary" (click)="onConfirm()">{{ 'BTN.YES' | translate: {Default: 'Yes'} }}</button>
+</div>

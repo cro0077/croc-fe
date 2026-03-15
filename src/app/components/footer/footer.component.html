@@ -1,0 +1,49 @@
+
+<div class="divider primary-color mb-1 mt-5"></div>
+<div id="footer" class="theme-container flex-row-wrap flex-between">
+
+    <div width-xm="100" class="w-40 m-l-r-auto">
+         @if (!!contactInfo) {
+            @if (!!contactInfo.phone) {
+            <div class="ml-2 m-t-b-auto">
+                <h4>
+                  <a href="tel:{{contactInfo.phone}}">
+                    <mat-icon class="primary-color" style="vertical-align: sub;">phone</mat-icon>
+                    {{contactInfo.phone}}
+                  </a>
+                </h4>
+            </div>
+            }
+            @if (!!contactInfo.email) {
+            <div class="ml-2 m-t-b-auto">
+                <h4>
+                    <a href="mailto:{{contactInfo.email}}">
+                    <mat-icon class="primary-color" style="vertical-align: sub;">mail</mat-icon>
+                    {{contactInfo.email}}
+                    </a>
+                </h4>
+            </div>
+            }
+            <div class="mt-2 ml-2">
+                <a class="white" routerLink="/contact">{{'CONTACT.TITLE' | translate:{ Default: 'Contact Us / Write to us' } }}</a>
+            </div>
+            <div class="mt-2 ml-2">
+                <a class="white" routerLink="/deals">{{'DEAL.GET_DEAL' | translate:{ Default: 'Get a deal' } }}</a>
+            </div>
+        }
+
+    </div>
+
+    <div width-xm="100" class="w-40 mt-2 m-l-r-auto">
+        <div class="mt-2 ml-2">
+            <a class="white" routerLink="/report">{{'REPORT.TITLE' | translate:{ Default: 'Get vehicle history report by VIN' } }}</a>
+        </div>
+        <div class="mt-2 ml-2">
+            <a class="white" routerLink="/pricacy">{{'PRIVACY_POLICY.TITLE' | translate:{ Default: 'Privacy Policy' } }}</a>
+        </div>
+    </div>
+    
+    <div class="copyright w-100 flex-between">
+      <p class="m-1">Copyright © 2026 All Rights Reserved</p>
+    </div>
+</div>

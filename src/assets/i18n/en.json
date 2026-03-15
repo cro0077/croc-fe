@@ -1,0 +1,142 @@
+{
+  "REPORT": {
+    "TITLE": "Get vehicle history report by VIN",
+    "S_TITLE": "Car Report",
+    "ENTER_KEY": "enter KEY",
+    "REPORTS": "reports",
+    "PER_REPORT": "per report",
+    "FOUND_NUM": " records found",
+    "TYPE_CF": "CarCroc",
+    "TYPE_AC": "AutoCkeck",
+    "TYPE_ST": "Window Sticker",
+    "TYPE_PACF": "CarCroc`s",
+    "COPY_LINK": "Copy link",
+    "MISSING": "Missing Data! ",
+    "YOUR": "Your key is :",
+    "PLEASE_SAVE": "Please save it",
+    "YOU_HAVE": "You have ",
+    "REPORTS_LEFT": " reports left",
+    "DO_YOU_WANT": "Do You Want to Get Report For Vin ",
+    "LINK_COPIED": "The link is copied"
+  },
+  "ABOUTUS": {
+    "TITLE": "Get a vehicle history report / car report",
+    "MAIN": "Check Your Car History — Find out complete vehicles history: mileage, owners, accidents, thefts. Minimize your risk and check your vehicles history by VIN number."
+  },
+  "CONTACT": {
+    "TITLE": "Contact Us / Write to us",
+    "SUB_TITLE": "You have a question? You can write to us. ",
+    "NAME": "Name",
+    "EMAIL": "Email",
+    "NUM_REQUESTS": "Total reports needed",
+    "NUM_MONTH_PREDICTION": "Reports per month prediction",
+    "MESSAGE": "Message",
+    "SEND": "Contact us",
+    "SENDING": "Sending",
+    "MESSAGE_SENT": "The message has been sent. Thank you for your interest."
+  },
+  "HOW_TO": {
+    "TITLE": "For customers, easy and convenient",
+    "STEP_1": "First, search for the vehicle by VIN",
+    "STEP_2": "Then, select the report type you wish to purchase",
+    "STEP_3": "Complete the payment",
+    "STEP_4": "Receive the report"
+  },
+  "PROFILE": {
+    "EMAIL": "Email",
+    "NAME": "Name"
+  },
+  "LOAD_MORE": "Read more",
+  "DAYS": "Days",
+  "DAY": "Day",
+  "HOURS": "Hours",
+  "HOUR": "Hour",
+  "MINS": "Minutes",
+  "MIN": "Minute",
+  "ERROR": {
+    "BAD_PHONE": "Invalid phone number",
+    "PHONE_HINT": "Must start with + or 0 and contain between 10 and 12 digits",
+
+    "URL_REQUIRED": "Please enter valid url",
+    "URL_FECH_FAILD": "Error while fetching, please validate the url",
+    "PRICE_BETWEEN": "Price should be bigger than tha initial one",
+    "KILOMETERS_BETWEEN": "The kilometers must be more than the initial ones",
+
+    "PASSWORD_WRONG": "Wrong password",
+    "PASSWORD_REQUIRED": "Password is required",
+    "PASSWORD_LENGTH": "Password isn't long enough, minimum of 8 characters",
+    "PASSWORD_SPCIAL": "uppercase, lowercase letter, number and special character are required",
+    "CONFIRM_PASSWORD_REQUIRED": "Confirm Password is required",
+    "CONFIRM_PASSWORD_MISSMATCHED": "Passwords do not match",
+    "USER_TYPE_REQUIRED": "User type is required",
+    "ADDRESS_REQUIRED": "Address is required",
+    "DATE_REQUIRED": "Enter valid date",
+    "END_DATE": "End Date should be after Start Date",
+    "PHONE_REQUIRED": "Phone is required",
+    "PHONE_MISSING": "Please enter a phone number",
+    "GENDER_REQUIRED": "Gender is required",
+    "POSITION_REQUIRED": "Position is required",
+    "VAT_ID_ERROR": "Please enter valid VAT ID, if you have one",
+    "COMPANY_NUMBER_REQUIRED": "Company number is required",
+    "DESCRIPTION_REQUIRED":"Please enter Description",
+    "TYPE_REQUIRED": "Type is required",
+    "MAX_PARTICIPANTS_REQUIRED": "Enter Max Participants",
+    "PRICE_REQUIRED": "Price is required",
+    "CURRENCY_REQUIRED": "Currency is required",
+
+
+    "SOMETHING": "An error occurred, please try again later or contact us.",
+
+    "MESSAGE_REQUIRED": "Message is required",
+    "EMAIL_REQUIRED": "Email is required",
+    "EMAIL_INVALID": "Invalid email address",
+    "NAME_LENGTH": "Name isn't long enough, minimum of 2 characters",
+    "NAME_REQUIRED": "Name is required",
+    "MAX_LENGTH_500": "Reach the maximum length of 500 characters",
+    "INVALID_EMAIL": "Invalide email",
+    "INVALID": "Invalid",
+    "NO_RESULTS_FOUND": "No Results Found",
+    "REQUIRED": "Required",
+    
+    "PLEASE_TRY_AGAIN": "Error, please try again",
+    "VIN_REQUIRED": "Enter valid VIN",
+    "NO_DATA": "No data! ",
+    "NO_CREDITS": "Not enough credits, please recharge"
+  },
+  
+  "BTN": {
+    "CANCEL": "Cancel",
+    "CONFIRM": "Confirm",
+    "COPY": "Copy",
+    "NO": "No",
+    "YES": "Yes"
+  },
+  "DISCOUNT": {
+    "MORE_FOR_LESS": "Get budget-friendly packaged deals. Contact us for better price",
+    "TITLE": "Wholesale / Car Dealer",
+    "DESC_1": "Concact us to get to our budget-friendly packaged deals. Unlock low rates and access.",
+    "DESC_2": "Unlock access history section to view and track all your past reports.",
+    "DESC_3": "Intigrate us to you website, make additonal incom from car reports."
+  },
+  "DEAL": {
+    "GET_DEAL": "Get a deal",
+    "INTRO": "The Wholesale/Car Dealer program offers budget-friendly package deals with low rates and expanded access, including the ability to unlock and track your full report history. Dealers can also integrate the service directly into their website to generate additional income through car report offerings.",
+    "GET_NOW": "Get your deal now!",
+    "MULTI_DEAL": "Pay once and get KEY for access to multiple reports in one discounted package!"
+  },
+  "CURRENCY": {
+    "BGN": "лв.",
+    "USD": "$",
+    "CAD": "CAD",
+    "EUR": "€"
+  },
+  
+  "WITH_TAXES": "with taxes",
+  "PRICE": "Price",
+  "PAY_PRICE": "Pay",
+
+  "PRIVACY_POLICY": {
+    "TITLE": "Privacy Policy",
+    "CONFIRM_MSG": "With the submission of this inquiry, I confirm that I have read and understood CarCroc <a style='text-decoration: underline;' href='/privacy'>Privacy Policy</a> and I consent to my personal data being used for the purpose of processing this inquiry."
+  }
+}

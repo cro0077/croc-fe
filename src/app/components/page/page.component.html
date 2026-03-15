@@ -1,0 +1,13 @@
+<!-- overflow: visible for search sticky element -->
+<mat-sidenav-container style="overflow: visible">
+  <mat-sidenav-content class="page-wrapper" style="overflow-x: clip; overflow-y: visible">
+    <header>
+        <app-toolbar-main></app-toolbar-main>
+    </header>
+    <main class="content-offset-to-top">
+      <router-outlet></router-outlet>
+      
+      <app-footer></app-footer>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>

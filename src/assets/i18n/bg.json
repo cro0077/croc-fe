@@ -1,0 +1,47 @@
+{
+  "ABOUTUS": {
+    "TITLE": "Get a vehicle history report",
+    "MAIN": "Check Your Car History — Find out complete vehicles history: mileage, owners, accidents, thefts. Minimize your risk and check your vehicles history by VIN number."
+  },
+  "CONTACT": {
+    "TITLE": "Контакти / Пишете ни",
+    "SUB_TITLE": "Имате въпрос? Можете да ни пишете на емайл ",
+    "NAME": "Имена",
+    "EMAIL": "Имейл адрес",
+    "NUM_REQUESTS": "Общо необходими отчети",
+    "MESSAGE": "Съобщение",
+    "SEND": "Свържи се с нас",
+    "SENDING": "Изпраща се",
+    "MESSAGE_SENT": "Съобщението е изпратено. Благодаря ви за проявеният интерес."
+  },
+  "HOW_TO": {
+    "TITLE": "For customers, easy and convenient",
+    "STEP_1": "First, search for the vehicle by VIN",
+    "STEP_2": "Then, select the report type you wish to purchase",
+    "STEP_3": "Complete the payment",
+    "STEP_4": "Receive the report"
+  },
+  "ERROR": {
+    "PLEASE_TRY_AGAIN": "Грешка, моля опитайте пак",
+    "REQUIRED": "Полето е задължително",
+    "INVALID_EMAIL": "Невалиден имейл",
+    "BAD_PHONE": "Невалиден телефонен номер",
+    "PHONE_HINT": "Трабва да започва с + или 0 и да съдържа между 10 и 12 цифри",
+    "MAX_LENGTH_500": "Достигнахте максинамлната дължина от 500 символа"
+  },
+  "PROFILE": {
+    "EMAIL": "Имейл адрес"
+  },
+  "LOAD_MORE": "Прочетете повече",
+  "DAYS": "Дни",
+  "DAY": "Ден",
+  "HOURS": "Часа",
+  "HOUR": "Час",
+  "MINS": "Минути",
+  "MIN": "Минутa",
+
+  "PRIVACY_POLICY": {
+    "TITLE": "Privacy Policy",
+    "CONFIRM_MSG": "С изпращането на запитване потвърждавам, че съм запознат/а с <a style='text-decoration: underline;' href='/privacy'>Политиката за поверителност</a> на CarCroc и давам съгласие личните ми данни да бъдат използвани за целите на обработване на това запитване."
+  }
+}

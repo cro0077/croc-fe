@@ -1,0 +1,104 @@
+<div class="p-2 theme-container w-100 text-center">
+    <h1>{{ 'CONTACT.TITLE' | translate:{ Default: 'Contact Us' } }}</h1>
+    <p>
+        {{ 'CONTACT.SUB_TITLE' | translate:{ Default: 'You have a question? You can write to us. ' } }}
+    </p>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="mt-4 contact-form">
+        <div class="contact-form-row">
+            <div class="form-col">
+                <mat-form-field appearance="outline" class="field">
+                    <mat-label>{{ 'CONTACT.NAME' | translate:{ Default: 'Name' } }}</mat-label>
+                    <input matInput formControlName="name"/>
+                    @if (contactForm.get('name')?.touched && contactForm.get('name')?.hasError(
+                        'required')) {
+                        <mat-error>
+                            {{ 'ERROR.REQUIRED' | translate:{ Default: 'Required' } }}
+                        </mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="form-col">
+                <mat-form-field appearance="outline" class="field">
+                    <mat-label>{{ 'CONTACT.EMAIL' | translate:{ Default: 'Email' } }}</mat-label>
+                    <input matInput formControlName="email"/>
+                    @if (contactForm.get('email')?.touched && contactForm.get('email')?.hasError(
+                        'email')) {
+                            <mat-error>
+                                {{ 'ERROR.INVALID_EMAIL' | translate:{ Default: 'Invalide email' } }}
+                            </mat-error>
+                    }
+                    @if (contactForm.get('email')?.touched && contactForm.get('email')?.hasError(
+                        'required')) {
+                        <mat-error>
+                            {{ 'ERROR.REQUIRED' | translate:{ Default: 'Required' } }}
+                        </mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <div class="form-col">
+                <mat-form-field appearance="outline" class="field">
+                    <mat-label>{{ 'CONTACT.NUM_REQUESTS' | translate:{ Default: 'Total reports needed' } }}</mat-label>
+                    <input matInput formControlName="numRequests"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="field">
+                    <mat-label>{{ 'CONTACT.NUM_MONTH_PREDICTION' | translate:{ Default: 'Reports per month prediction' } }}</mat-label>
+                    <input matInput formControlName="numPerMonthRequests"/>
+                </mat-form-field>
+            </div>
+            <div class="form-col">
+                <mat-form-field appearance="outline" class="field">
+                    <mat-label>{{ 'CONTACT.MESSAGE' | translate:{ Default: 'Message' } }}</mat-label>
+                    <textarea matInput formControlName="message" rows="4" maxlength="501"></textarea>
+                    @if (contactForm.get('message')?.touched && contactForm.get('message')?.hasError(
+                        'maxlength')) {
+                        <mat-error>
+                            {{ 'ERROR.MAX_LENGTH_500' | translate:{ Default: 'Reach the maximum length of 500 characters' } }}
+                        </mat-error>
+                    }
+                    @else if (contactForm.get('message')?.errors) {
+                            <mat-error>
+                                {{ 'ERROR.PLEASE_TRY_AGAIN' | translate:{ Default: 'Error, please try again' } }}
+                            </mat-error>
+                    }
+                </mat-form-field>
+            </div>
+            <p [innerHTML]="'PRIVACY_POLICY.CONFIRM_MSG' | translate: { Default: 'With the submission of this inquiry, I confirm that I have read and understood CarCroc Privacy Policy and I consent to my personal data being used for the purpose of processing this inquiry.' }">
+        </div>
+        <div class="mt-3 w-100">
+            @if (!submitted) {
+                <button mat-raised-button color="primary" type="submit"
+                        [disabled]="contactForm.invalid || submitting">
+                    @if (!submitting) {
+                        {{ 'CONTACT.SEND' | translate:{ Default: 'Contact us' } }}
+                    }
+                    @if (submitting) {
+                        {{ 'CONTACT.SENDING' | translate:{ Default: 'Sending' } }}
+                    }
+                </button>
+            }
+            @if (submitting) {
+                <mat-spinner class="m-l-r-auto" color="accent"
+                                      strokeWidth="3"></mat-spinner>
+            } @else if (submitted) {
+                <div class="text-center mt-4">
+                    <mat-icon style="scale: 2;" color="primary">check_circle</mat-icon>
+                    <div class="w-100 mt-2">
+                        <p>
+                            {{ 'CONTACT.MESSAGE_SENT' | translate:{ Default: 'The message has been sent. Thank you for your interest.' } }}
+                        </p>
+                    </div>
+                </div>
+            }
+        </div>
+    </form>
+
+    
+    @if(errorMessage) {
+        <div class="error-panel" role="alert" aria-live="assertive"
+             style="margin-top:.5rem; ">
+            {{ errorMessage }}
+        </div>
+    }
+
+</div>

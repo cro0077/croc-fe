@@ -1,0 +1,25 @@
+<app-report-vin 
+  (onReportChoosen)="onReportChoosen($event)"
+  (onConfirmReportSearch)="onConfirmReportSearch($event)"
+  [vin]="vin" [key]="key" [reportInfo]="reportInfo"
+  [showConfirm] = "showConfirmBtn"
+  [searchLoading] = "searchLoading"
+  [searchNotFoundError] = "searchNotFoundError"
+  [searchBaseError] = "searchBaseError"></app-report-vin>
+
+@if (!!getLoading) {
+  <div class="w-100 flex-center m-1">
+    <mat-spinner class="black" diameter="45"></mat-spinner>
+  </div>
+}
+@if (!!noCreditsError) {
+  <div class="w-100 text-center">
+    <a href="/deals">
+      <h4 class="mt-2">{{'ERROR.NO_CREDITS' | translate: {Default: 'Not enough credits, please recharge'} }}</h4>
+      <img alt="car croc" class="cursor-default" src="assets/check/nc.png" >
+    </a>
+  </div>
+}
+@if(!!generatedReport) {
+  <app-report-info [generatedReport]="generatedReport"></app-report-info>
+}

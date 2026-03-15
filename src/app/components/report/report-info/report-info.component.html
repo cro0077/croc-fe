@@ -1,0 +1,37 @@
+<div class="p-1">
+  <div class="theme-container">
+    <mat-card class="p-0 mt-2 ml-0 mr-0">
+      @if (!!getLoading) {
+        <div class="w-100 flex-center">
+          <mat-spinner class="m-2" diameter="95"></mat-spinner>
+        </div>
+      } 
+      @if (!!_generatedReport) {
+        <div class="flex-row-wrap">
+          <div class="w-100 flex-center">
+            <button mat-raised-button class="button-strech m-2 border-solid-green" color="white" matTooltip="copy" (click)="copyLink()">
+                  <mat-icon>content_copy</mat-icon> {{'REPORT.COPY_LINK' | translate: {Default: 'Copy link'} }}
+            </button>
+            @if (_generatedReport.isPdf) {
+              <a mat-raised-button class="m-2" color="accent" [href]="reporFile"  [download]="_generatedReport.path">
+                <mat-icon>download</mat-icon>
+                {{'DOWNLOAD' | translate: {Default: 'Download'} }}
+              </a>
+            }
+          </div>
+          <div class="flex-100">
+            @if (!!reporFile) {
+            <iframe id="reportView" style="height: 600px;" class="w-100" [src]="reporFile"
+              scrolling="no"
+              onload="this.style.height=((this.contentWindow.document.body.scrollHeight > 0 ? this.contentWindow.document.body.scrollHeight : 600) +70)+'px';"></iframe>
+            }
+          </div>
+        </div>
+      } @else {
+        <div class="m-5 text-center">
+          <h1>{{'ERROR.NO_DATA' | translate: {Default: 'No data! '} }}</h1>
+        </div>
+      }
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+.contact-form {
+    max-width: 880px;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    margin-bottom: .85rem;
+}
+
+.form-col {
+    flex: 1 1 340px;
+    max-width: 440px;
+    min-width: 220px;
+    @media (max-width: 730px) {
+        max-width: 100%;
+        flex: 1 1 100%;
+    }
+}
+
+.field {
+    width: 100%;
+}

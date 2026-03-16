@@ -377,7 +377,7 @@
 
         document.getElementById('dialogVincroco').textContent = vinRep || '—';
 
-        fetch('http://localhost:8098/croco/find', {
+        fetch('https://serve.carcroc.com/croco/find', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(
@@ -431,7 +431,7 @@
         if (!keyReport && document.getElementById('idPh').innerText.trim() != 'key') {
           var vinRep = document.getElementById('vinRInput').value.trim();
 
-          fetch('http://localhost:8098/croco/init', {
+          fetch('https://serve.carcroc.com/croco/init', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ vin: vinRep, type: 'CF' })
@@ -567,7 +567,7 @@
           var email=document.getElementById('emailInputcroco').value.trim();
           var idp=document.getElementById('idPh').innerText.trim();
           
-        fetch('http://localhost:8098/croco/create', {
+        fetch('https://serve.carcroc.com/croco/create', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ id: idp, type: 'CF', customerEmail: email, customerName: name })
@@ -604,7 +604,7 @@
         var vinRep = document.getElementById('vinRInput').value.trim();
         var keyReport = document.getElementById('keyRInput').value.trim();
           
-        fetch('http://localhost:8098/croco/get', {
+        fetch('https://serve.carcroc.com/croco/get', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(

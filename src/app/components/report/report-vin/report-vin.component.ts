@@ -9,11 +9,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { FindReportsResponse, Price, ReportRequest, ReportTypes, VinKeyResponse } from '../../../../services/models';
 import { ReportService } from '../../../../services/report/report.service';
-import { Subscription } from 'rxjs';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../../dialogs/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-report-vin',
@@ -42,12 +40,9 @@ export class ReportVinComponent implements OnDestroy {
 
   public infoForm?: FormGroup;
 
-  constructor(private reportService: ReportService,
+  constructor(
               private formBuilder: FormBuilder,
               private decimalPipe: DecimalPipe,
-              private activatedRoute: ActivatedRoute,
-              private dialog: MatDialog,
-              private translate: TranslateService,
               private cdRef: ChangeDetectorRef) {
   }
 

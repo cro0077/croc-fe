@@ -68,7 +68,6 @@ export class ContactUs implements OnInit, AfterViewInit {
   private sendEm() {
     const body = this.contactForm.value;
     body.apikey = "06a0b636-2973-485d-92c8-b72b903e9df4";
-    // body.access_key = "06a0b636-2973-485d-92c8-b72b903e9df4";
     
     this.http.post('https://api.web3forms.com/submit', body, {
       headers: { 

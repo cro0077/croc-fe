@@ -402,6 +402,7 @@
               document.getElementById('val-p-success').innerHTML = `Get the report, you have ${data.price.numReports} left`;
               document.getElementById('val-p-confirm').innerHTML = `Get the report, you have ${data.price.numReports} left`;
             }
+            document.getElementById('error-croco').classList.remove('opencroco');
           }
         })
         .catch(function(err) {

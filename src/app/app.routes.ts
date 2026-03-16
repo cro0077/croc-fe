@@ -8,6 +8,7 @@ import { DealsComponent } from './components/deals/deals';
 import { PayComponent } from './components/pay/pay.component';
 import { ErrorPayComponent } from './components/pay/error-pay/error-pay.component';
 import { SuccessPayComponent } from './components/pay/success-pay/success-pay.component';
+import { Privacy } from './components/privacy/privacy';
 
 export const routes: Routes = [
     {
@@ -46,6 +47,10 @@ export const routes: Routes = [
             {
                 path: 'contact',
                 component: ContactUs
+            },
+            {
+                path: 'pricacy',
+                component: Privacy
             },
             {
                 path: 'croco/:type/:vinId',

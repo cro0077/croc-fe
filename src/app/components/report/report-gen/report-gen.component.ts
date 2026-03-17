@@ -56,6 +56,7 @@ export class ReportGenComponent {
   onConfirmReportSearch(vinKey: VinKeyResponse) {
     
       if (!!vinKey.vin) {
+        this.searchLoading = true;
         this.findVinSubscription = this.reportService.find(
           {
             vin: vinKey.vin,
@@ -136,22 +137,6 @@ export class ReportGenComponent {
 
     }
 
-
-    //testing:
-    // this.getLoading = true;
-    // this.reportAService.generateReport(
-    //   request
-    // ).subscribe({
-    //   next: res => {
-    //     this.generatedReport = res;
-    //     this.getLoading = false;
-    //   },
-    //   error: err => {
-    //     if (err) {
-    //       throw err;
-    //     }
-    //   }
-    // });
   }
 
   

@@ -10,7 +10,7 @@ import { LangComponent } from '../lang/lang.component';
   selector: 'app-toolbar-main',
   standalone: true,
   imports: [TranslateModule, MatToolbar, MatButtonModule, FormsModule, RouterLink,
-    LangComponent    
+    // LangComponent    
   ],
   templateUrl: './toolbar-main.component.html'
 })

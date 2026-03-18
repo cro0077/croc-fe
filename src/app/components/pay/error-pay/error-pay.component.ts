@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, PLATFORM_ID } from '@angular/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ActivatedRoute } from '@angular/router';
 import { PayService } from '../../../../services/pay.service';
@@ -16,6 +16,7 @@ export class ErrorPayComponent {
 
   constructor(private activatedRoute: ActivatedRoute,
               private payService: PayService,
+              private cdRef: ChangeDetectorRef,
               @Inject(PLATFORM_ID) private readonly platformId: Object
   ) {
   }
@@ -24,9 +25,15 @@ export class ErrorPayComponent {
       const id = this.activatedRoute.snapshot.queryParamMap.get('id');
       if (!!id) {
         this.payService.failureUpdate({id: id}).subscribe({
-          next: () => this.loading = false,
+          next: () => {
+            this.loading = false;
+            this.cdRef.markForCheck();
+            this.cdRef.detectChanges();
+          },
           error: (error) => {
             this.loading = false;
+            this.cdRef.markForCheck();
+            this.cdRef.detectChanges();
             throw error;
           }
         });

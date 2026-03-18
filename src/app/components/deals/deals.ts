@@ -42,8 +42,8 @@ export class DealsComponent {
           this.pricePerOne = dealPerOne.price;
         }
         this.packageDeals = res;
-        this.smPackageDeal = this.packageDeals.filter(el => el!.num < 50);
-        this.bgPackageDeal = this.packageDeals.filter(el => el!.num >= 50);
+        this.smPackageDeal = this.packageDeals.filter(el => el!.num < 200);
+        this.bgPackageDeal = this.packageDeals.filter(el => el!.num >= 200);
         this.cdRef.detectChanges();
       });
     }

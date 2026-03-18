@@ -14,13 +14,12 @@ export const routes: Routes = [
     {
         path: '',
         component: PageComponent,
-        title: "Car Croc",
+        title: "C A R  C R O C",
         children: [
             {
                 path: '',
                 component: HomeComponent,
-                pathMatch: 'full',
-                title: 'Car Croc'
+                pathMatch: 'full'
             },
             {
                 path: 'report',
@@ -42,7 +41,8 @@ export const routes: Routes = [
             },
             {
                 path: 'deals',
-                component: DealsComponent
+                component: DealsComponent,
+                title: 'C A R  C R O C DEALS'
             },
             {
                 path: 'contact',

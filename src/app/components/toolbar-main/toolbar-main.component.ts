@@ -4,13 +4,13 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule } from '@angular/forms';
-import { LangComponent } from '../lang/lang.component';
+// import { LangComponent } from '../lang/lang.component';
 
 @Component({
   selector: 'app-toolbar-main',
   standalone: true,
   imports: [TranslateModule, MatToolbar, MatButtonModule, FormsModule, RouterLink,
-    // LangComponent    
+    // LangComponent
   ],
   templateUrl: './toolbar-main.component.html'
 })

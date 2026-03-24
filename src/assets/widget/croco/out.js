@@ -1,7 +1,7 @@
 /**
  * CARCROCWidget - Vehicle History Report Widget Library
  * Usage: <script src="carcroc-widget.js"></script>
- *        <div id="widget-mount" croc="YOUR_KEY"></div>
+ *        <div id="croco-widget-mount" croc="YOUR_KEY"></div>
  */
 
 (function (global) {
@@ -366,7 +366,7 @@
 
     const $ = (name) => document.getElementById(`${name}_${uid}`);
 
-    const API_BASE = 'http://localhost:8080';
+    const API_BASE = 'https://serve.carcroc.com';
 
     // helpers
     function showError()  { $('error-croco').style.display = 'flex'; }
@@ -572,7 +572,7 @@
      * @param {string} targetId - The ID of the container element.
      *
      * Example:
-     *   CARCROCWidget.mount('widget-mount');
+     *   CARCROCWidget.mount('croco-widget-mount');
      */
     mount: function (targetId) {
       waitForDivAndInject(targetId);
@@ -593,9 +593,9 @@
   };
 
   // ─── AUTO-INIT on DOMContentLoaded ──────────────────────────────────────────
-  // Automatically mounts any <div id="widget-mount" croc="..."> found on the page.
+  // Automatically mounts any <div id="croco-widget-mount" croc="..."> found on the page.
   function autoInit() {
-    const container = document.getElementById('widget-mount');
+    const container = document.getElementById('croco-widget-mount');
     if (container && !container.dataset.carcrocDone) {
       injectStyles();
       container.dataset.carcrocDone = 'true';

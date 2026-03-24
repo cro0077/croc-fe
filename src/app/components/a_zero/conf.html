@@ -1,11 +1,31 @@
 
 
+<!-- 
+<button
+  class="btnReport btnReport-confirm"
+  id="carcrocButtonShowBYOpt"
+  visible="false"
+  onclick="window.waitForDivAndInject('croco-widget-mount');"
+  > Buy CARFAX report </button> -->
+
 
 <button
   class="btnReport btnReport-confirm"
   id="carcrocButtonShowBYOpt"
   visible="false"
-  onclick="window.waitForDivAndInject('widget-mount');"
+  onclick="window.CARCROCWidget.mount('croco-widget-mount');"
+  style="
+    background: #6bb89e;
+    color: #fff;
+    padding: 13px 20px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.18s, transform 0.1s, box-shadow 0.18s;
+    margin: 0.2rem;"
   > Buy CARFAX report </button>
 
-<div id = 'widget-mount' croc = 'lOXSYjQv22ngsealOLVDXw==' ></div>
+<div id='croco-widget-mount' croc = 'lOXSYjQv22ngsealOLVDXw==' ></div>

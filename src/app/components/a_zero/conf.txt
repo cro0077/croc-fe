@@ -1,32 +1,4 @@
-<!doctype html>
-<html lang="en">
 
-
-<head>
-  <meta charset="utf-8">
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="alternate" hreflang="x-default" href="https://carcroc.com" />
-  <link rel="canonical" href="https://carcroc.com/">
-  <link rel="icon" href="fav.ico">
-  <title>CarCroc your car report</title>
-  <meta property="og:title" content="CarCroc your car report">
-  <meta property="og:site_name" content="CarCroc your car report"/>
-  <base href="/">
-  <meta property="viewport" content="width=device-width, initial-scale=1">
-  <meta property="keywords" content="CarCroc Car Crock report carfax">
-
-  <!-- <meta property="og:image" content="https://carcroc.com/assets/cup/post_sm.jpg"> -->
-  <meta property="og:image:width" content="400">
-  <meta property="og:image:height" content="565">
-  <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:locale" content="en_US">
-</head>
-<body>
-  <app-root></app-root>
-
-
-  
 <style>
   .widgetReport {
     font-family: 'DM Sans', sans-serif;
@@ -350,7 +322,7 @@
 
 </style>
 <script>
-  function buildWidgetHTML(crocKey) {
+  function buildWidgetHTML() {
     return `
       <div class="widgetReport">
         <h1 class="rH1">Get vehicle history report by VIN</h1>
@@ -406,11 +378,11 @@
 
               document.getElementById('dialogVincroco').textContent = vinRep || '—';
 
-              fetch('http://localhost:8080/croco/find', {
+              fetch('https://serve.carcroc.com/croco/find', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(
-                {vin: vinRep, key: keyReport, crocKey: '${crocKey}' })
+                {vin: vinRep, key: keyReport})
               })
               .then(function(res) {
                 if(res.ok) {
@@ -456,14 +428,15 @@
         
         <button id="succsess-croco" class="report-result btnReport btnReport-confirm"
             onclick="
+
               const keyReport = document.getElementById('keyRInput').value.trim();
               if (!keyReport && document.getElementById('idPh').innerText.trim() != 'key') {
                 var vinRep = document.getElementById('vinRInput').value.trim();
 
-                fetch('http://localhost:8080/croco/init', {
+                fetch('https://serve.carcroc.com/croco/init', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ vin: vinRep, type: 'CF', crocKey: '${crocKey}' })
+                  body: JSON.stringify({ vin: vinRep, type: 'CF' })
                 })
                 .then(function(res) {
                   if(res.ok) {
@@ -546,7 +519,7 @@
               oninput="
                 var n=this.value.trim();
                 var e=document.getElementById('emailInputcroco').value.trim();
-                var ev=/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(e);
+                var ev=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
                 document.getElementById('nameFieldcroco').classList.toggle('errorcroco', n.length>0 && n.length<2);
                 document.getElementById('confirmBtncrocoInputs').disabled=!(n.length>=2 && ev);
               "
@@ -565,7 +538,7 @@
               oninput="
                 var e=this.value.trim();
                 var n=document.getElementById('nameInputcroco').value.trim();
-                var ev=/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(e);
+                var ev=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
                 document.getElementById('emailFieldcroco').classList.toggle('errorcroco', e.length>0 && !ev);
                 document.getElementById('confirmBtncrocoInputs').disabled=!(n.length>=2 && ev);
               "
@@ -596,7 +569,7 @@
                 var email=document.getElementById('emailInputcroco').value.trim();
                 var idp=document.getElementById('idPh').innerText.trim();
                 
-              fetch('http://localhost:8080/croco/create', {
+              fetch('https://serve.carcroc.com/croco/create', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ id: idp, type: 'CF', customerEmail: email, customerName: name })
@@ -633,7 +606,7 @@
               var vinRep = document.getElementById('vinRInput').value.trim();
               var keyReport = document.getElementById('keyRInput').value.trim();
                 
-              fetch('http://localhost:8080/croco/get', {
+              fetch('https://serve.carcroc.com/croco/get', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify(
@@ -671,45 +644,29 @@
         </div>
     `;
   }
+  // 2. Inject into ANY div by id
+  function injectWidget(targetId = 'widget-mount') {
+    const container = document.getElementById(targetId);
+    if (!container) return console.warn('Target not found');
+
+    container.insertAdjacentHTML('beforeend', buildWidgetHTML());
+  }
+  // 3. Call it anywhere
+  injectWidget('my-custom-div-id');
 
   function waitForDivAndInject(targetId) {
     const interval = setInterval(() => {
       const container = document.getElementById(targetId);
 
-      if (!!container) {
-        console.warn(container);
-        container.do = "progress";
+      if (container) {
+        clearInterval(interval);        // ✅ found — stop checking
+        container.insertAdjacentHTML('beforeend', buildWidgetHTML());
+        console.log(`Widget injected into #${targetId}`);
+      } else {
+        console.log(`#${targetId} not found yet, retrying...`);
       }
 
-      if (!!container && !!container.do && container.do != "done") {
-        const crocKey = container.getAttribute('croc');
-        console.warn(container.do)
-
-        clearInterval(interval);
-        container.insertAdjacentHTML('beforeend', buildWidgetHTML(crocKey));
-        container.do="done";
-        const el = document.getElementById('carcrocButtonShowBYOpt');
-        if (!!el) {
-          el.style.display = 'none';
-        }
-
-        const intervalTwo = setInterval(() => {
-          if (!container.querySelector('.widgetReport')) {
-            container.insertAdjacentHTML('beforeend', buildWidgetHTML(crocKey));
-          }
-          clearInterval(intervalTwo);
-        }, 500)
-
-      } else if (!!container && !!container.do && container.do == "done") {
-        
-        clearInterval(interval);
-        const el = document.getElementById('carcrocButtonShowBYOpt');
-        if (!!el) {
-          el.style.display = 'none';
-        }
-      }
-
-    }, 1000); // check every 1 seconds
+    }, 4000); // check every 4 seconds
   }
 
   // Usage
@@ -717,5 +674,329 @@
 
 </script>
 
-</body>
-</html>
+
+
+/////////////
+
+
+
+
+<div class="widgetReport">
+  
+  <h1 class="rH1">Get vehicle history report by VIN</h1>
+
+  <div class="input-fieldReport">
+    <span class="icon">
+      <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.5 5H16.5L14.5 1C14.2 0.4 13.6 0 13 0H7C6.4 0 5.8 0.4 5.5 1L3.5 5H2.5C1.7 5 1 5.7 1 6.5V11.5C1 11.8 1.2 12 1.5 12H2V13.5C2 14.3 2.7 15 3.5 15H4.5C5.3 15 6 14.3 6 13.5V12H14V13.5C14 14.3 14.7 15 15.5 15H16.5C17.3 15 18 14.3 18 13.5V12H18.5C18.8 12 19 11.8 19 11.5V6.5C19 5.7 18.3 5 17.5 5ZM5 9C4.4 9 4 8.6 4 8C4 7.4 4.4 7 5 7C5.6 7 6 7.4 6 8C6 8.6 5.6 9 5 9ZM15 9C14.4 9 14 8.6 14 8C14 7.4 14.4 7 15 7C15.6 7 16 7.4 16 8C16 8.6 15.6 9 15 9ZM3.5 5L5.1 1.5C5.2 1.2 5.6 1 6 1H14C14.4 1 14.8 1.2 14.9 1.5L16.5 5H3.5Z" fill="currentColor"/>
+      </svg>
+    </span>
+    <input
+      type="text"
+      id="vinRInput"
+      placeholder="VIN"
+      autocomplete="off"
+      spellcheck="false"
+      maxlength="17"
+      oninput="document.getElementById('confirmRBtn').disabled = this.value.trim().length < 17"
+    >
+  </div>
+
+  <div class="key-sectionReport">
+    <div
+      class="key-toggleReport"
+      onclick="var kb=document.getElementById('keyRBody'); var ch=document.getElementById('chevronReport'); var o=kb.classList.toggle('open'); ch.classList.toggle('open',o);"
+    >
+      <span>enter KEY</span>
+      <svg class="chevronReport close" id="chevronReport" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="18 15 12 9 6 15"></polyline>
+      </svg>
+    </div>
+    <div class="key-bodyReport close" id="keyRBody">
+      <div class="input-fieldReport">
+        <span class="icon">
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 0C2.2 0 0 2.2 0 5C0 7.8 2.2 10 5 10C6.9 10 8.6 8.9 9.4 7.3L10 8L11 7L12 8L13 7L14 8L16 6L14.8 4.8L9.4 2.7C8.6 1.1 6.9 0 5 0ZM5 8C3.3 8 2 6.7 2 5C2 3.3 3.3 2 5 2C6.7 2 8 3.3 8 5C8 6.7 6.7 8 5 8ZM5 3C3.9 3 3 3.9 3 5C3 6.1 3.9 7 5 7C6.1 7 7 6.1 7 5C7 3.9 6.1 3 5 3Z" fill="currentColor"/>
+          </svg>
+        </span>
+        <input type="string" id="keyRInput" placeholder="Key" autocomplete="off">
+      </div>
+    </div>
+  </div>
+
+  <div class="actionsReport">
+    <span id="idPh" style="display: none;"></span>
+    <button
+      class="btnReport btnReport-confirm"
+      id="confirmRBtn"
+      disabled
+      onclick="
+        var vinRep = document.getElementById('vinRInput').value.trim();
+        var keyReport = document.getElementById('keyRInput').value.trim();
+
+        document.getElementById('dialogVincroco').textContent = vinRep || '—';
+
+        fetch('https://serve.carcroc.com/croco/find', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(
+          {vin: vinRep, key: keyReport})
+        })
+        .then(function(res) {
+          if(res.ok) {
+            return res.json();
+          } else {
+            document.getElementById('error-croco').classList.add('opencroco');
+          }
+        })
+
+        .then(function(data) {
+          if (!!data && !!data.price) {
+            document.getElementById('succsess-croco').classList.add('opencroco');
+            if (data.price.price > 0) {
+              document.getElementById('val-p-success').innerHTML = `${data.price.price} ${data.price.currency}`;
+              document.getElementById('val-p-confirm').innerHTML = `${data.price.price} ${data.price.currency}`;
+            } else if (data.price.isLogIn && data.price.numReports > 0) {
+              document.getElementById('idPh').innerText = 'key';
+              document.getElementById('val-p-success').innerHTML = `Get the report, you have ${data.price.numReports} left`;
+              document.getElementById('val-p-confirm').innerHTML = `Get the report, you have ${data.price.numReports} left`;
+            }
+            document.getElementById('error-croco').classList.remove('opencroco');
+          }
+        })
+        .catch(function(err) {
+          document.getElementById('error-croco').classList.add('opencroco');
+        });
+
+
+      "
+    >Confirm</button>
+    <button
+      class="btnReport btnReport-cancel"
+      onclick="
+        document.getElementById('vinRInput').value = '';
+        document.getElementById('keyRInput').value = '';
+        document.getElementById('confirmRBtn').disabled = true;
+        document.getElementById('succsess-croco').classList.remove('opencroco');
+        document.getElementById('val-p-success').value = '';
+        document.getElementById('error-croco').classList.remove('opencroco');
+      "
+    >Cancel</button>
+  </div>
+  
+  <button id="succsess-croco" class="report-result btnReport btnReport-confirm"
+      onclick="
+
+        const keyReport = document.getElementById('keyRInput').value.trim();
+        if (!keyReport && document.getElementById('idPh').innerText.trim() != 'key') {
+          var vinRep = document.getElementById('vinRInput').value.trim();
+
+          fetch('https://serve.carcroc.com/croco/init', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ vin: vinRep, type: 'CF' })
+          })
+          .then(function(res) {
+            if(res.ok) {
+              return res.json();
+            } else {
+              document.getElementById('error-croco').classList.add('opencroco');
+            }
+          })
+          .then(function(data) {
+            if (!!data && !!data.id) {
+              document.getElementById('idPh').innerText = data.id;
+              document.getElementById('backdropcroco').classList.add('opencroco');
+              
+              document.getElementById('nameFieldcroco').classList.add('opencroco');
+              document.getElementById('emailFieldcroco').classList.add('opencroco');
+              document.getElementById('confirmBtncrocoInputs').classList.add('opencroco');
+              document.getElementById('confirmBtncrocoWithKey').classList.remove('opencroco');
+            }
+          })
+          .catch(function(err) {
+            alert('Request failed: ' + err.message);
+          });
+        } else {
+          document.getElementById('backdropcroco').classList.add('opencroco');
+          document.getElementById('nameFieldcroco').classList.remove('opencroco');
+          document.getElementById('emailFieldcroco').classList.remove('opencroco');
+          document.getElementById('confirmBtncrocoInputs').classList.remove('opencroco');
+          document.getElementById('confirmBtncrocoWithKey').classList.add('opencroco');
+        }
+      ">
+    <div class="report-result-success">
+      <span class="i">&#10004;</span>
+      <span>Success!</span>
+      <h5 id="val-p-success"></h5>
+    </div>
+  </button>
+  <button id="error-croco" class="report-result btnReport btnReport-confirm">
+    <div class="report-result-fail">
+      <span class="i">&#10060;</span>
+      <span>Error — No data found</span>
+    </div>
+  </button>
+
+</div>
+
+<div
+  class="backdropcroco"
+  id="backdropcroco"
+  onclick="
+    if(event.target===this) {
+      this.classList.remove('opencroco');
+      document.getElementById('nameInputcroco').value='';
+      document.getElementById('emailInputcroco').value='';
+      document.getElementById('nameFieldcroco').classList.remove('errorcroco');
+      document.getElementById('emailFieldcroco').classList.remove('errorcroco');
+      document.getElementById('confirmBtncrocoInputs').disabled=true;
+    }
+  "
+>
+  <div class="dialogcroco">
+
+    <div class="croco-logocroco">
+      <div class="logo-boxcroco">C A R F A <span>X</span></div>
+      <div class="logo-boxcroco"><span>power by </span></div>
+      <div class="logo-boxcroco">C A R C R O <span>C</span></div>
+    </div>
+
+    <div class="vincroco">VIN: <span id="dialogVincroco">—</span></div>
+    <div class="pricecroco">Price: <span id="val-p-confirm"></span></div>
+
+    <!-- Name -->
+    <div class="input-fieldcroco" id="nameFieldcroco">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+      </svg>
+      <input
+        type="text"
+        id="nameInputcroco"
+        placeholder="Name"
+        oninput="
+          var n=this.value.trim();
+          var e=document.getElementById('emailInputcroco').value.trim();
+          var ev=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+          document.getElementById('nameFieldcroco').classList.toggle('errorcroco', n.length>0 && n.length<2);
+          document.getElementById('confirmBtncrocoInputs').disabled=!(n.length>=2 && ev);
+        "
+      >
+    </div>
+
+    <!-- Email -->
+    <div class="input-fieldcroco" id="emailFieldcroco">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+      </svg>
+      <input
+        type="email"
+        id="emailInputcroco"
+        placeholder="Email"
+        oninput="
+          var e=this.value.trim();
+          var n=document.getElementById('nameInputcroco').value.trim();
+          var ev=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+          document.getElementById('emailFieldcroco').classList.toggle('errorcroco', e.length>0 && !ev);
+          document.getElementById('confirmBtncrocoInputs').disabled=!(n.length>=2 && ev);
+        "
+      >
+    </div>
+
+    <!-- Buttons -->
+    <div class="actionscroco">
+      <button
+        class="btncroco btn-cancelcroco"
+        onclick="
+          document.getElementById('backdropcroco').classList.remove('opencroco');
+          document.getElementById('nameInputcroco').value='';
+          document.getElementById('emailInputcroco').value='';
+          document.getElementById('nameFieldcroco').classList.remove('errorcroco');
+          document.getElementById('emailFieldcroco').classList.remove('errorcroco');
+          document.getElementById('confirmBtncrocoInputs').disabled=true;
+        "
+      >Cancel</button>
+
+      <!-- Confirm name and email -->
+      <button
+        class="btncroco btn-confirmcroco"
+        id="confirmBtncrocoInputs"
+        disabled
+        onclick="
+          var name=document.getElementById('nameInputcroco').value.trim();
+          var email=document.getElementById('emailInputcroco').value.trim();
+          var idp=document.getElementById('idPh').innerText.trim();
+          
+        fetch('https://serve.carcroc.com/croco/create', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ id: idp, type: 'CF', customerEmail: email, customerName: name })
+          })
+          .then(function(res) {
+            if(res.ok) {
+              document.getElementById('backdropcroco').classList.remove('opencroco');
+              document.getElementById('nameInputcroco').value='';
+              document.getElementById('emailInputcroco').value='';
+              document.getElementById('nameFieldcroco').classList.remove('errorcroco');
+              document.getElementById('emailFieldcroco').classList.remove('errorcroco');
+              document.getElementById('confirmBtncrocoInputs').disabled=true;
+              return res.json();
+            } else {
+              document.getElementById('error-croco').classList.add('opencroco');
+            }
+          })
+          .then(function(data) {
+            if (!!data && !!data.url) {
+              window.open(data.url, '_self');
+            }
+          })
+          .catch(function(err) {
+            alert('Request failed: ' + err.message);
+          });
+        "
+      >Confirm</button>
+    
+      <!-- Confirm Get Points -->
+      <button
+        class="btncroco btn-confirmcroco"
+        id="confirmBtncrocoWithKey"
+        onclick="
+        var vinRep = document.getElementById('vinRInput').value.trim();
+        var keyReport = document.getElementById('keyRInput').value.trim();
+          
+        fetch('https://serve.carcroc.com/croco/get', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(
+              { 
+                type: 'CF',
+                vin: vinRep,
+                key: keyReport
+              }
+            )
+          })
+          .then(function(res) {
+            if(res.ok) {
+              document.getElementById('backdropcroco').classList.remove('opencroco');
+              document.getElementById('nameInputcroco').value='';
+              document.getElementById('emailInputcroco').value='';
+              document.getElementById('nameFieldcroco').classList.remove('errorcroco');
+              document.getElementById('emailFieldcroco').classList.remove('errorcroco');
+              document.getElementById('confirmBtncrocoInputs').disabled=true;
+              return res.json();
+            } else {
+              document.getElementById('error-croco').classList.add('opencroco');
+            }
+          })
+          .then(function(data) {
+            if (!!data.report && !!data.report.path) {
+              window.open(`http://localhost:4200/report/info/${data.report.path}`, '_self');
+            }
+          })
+          .catch(function(err) {
+            alert('Request failed: ' + err.message);
+          });
+        "
+      >Get</button>
+    </div>
+  </div>

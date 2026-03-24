@@ -6,6 +6,19 @@
 
 
 
+
+.logo-boxcroco {
+  width: fit-content;
+  padding: 3px 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #111;
+  margin-left: 2px;
+}
+
+.logo-boxcroco span { color: #6bb89e; }
+
 //custom expansion panel
 mat-expansion-panel {
   background-color: transparent !important; /* Set transparent background */

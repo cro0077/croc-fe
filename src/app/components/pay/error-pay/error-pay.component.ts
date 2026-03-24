@@ -20,6 +20,7 @@ export class ErrorPayComponent {
               @Inject(PLATFORM_ID) private readonly platformId: Object
   ) {
   }
+
   ngOnInit() {
     if (!!isPlatformBrowser(this.platformId)) {
       const id = this.activatedRoute.snapshot.queryParamMap.get('id');
@@ -40,5 +41,5 @@ export class ErrorPayComponent {
       }
     }
   }
-  
+
 }

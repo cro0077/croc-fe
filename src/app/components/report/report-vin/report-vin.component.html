@@ -72,7 +72,7 @@
                                   [disabled]="!!infoReport.disable"
                                   (click)="getReport(reportInfo.vin, infoReport.num, infoReport.type, infoReport.price)">
                       <h4>{{ 'REPORT.TYPE_' + infoReport.type | translate: {Default: infoReport.type} }}</h4>
-                      <img [src]="getReportIcon(infoReport.type)" class="p-1">
+                      <img alt="CarCroc auto car reports CarFax Windows Stickers AutoCheck"[src]="getReportIcon(infoReport.type)" class="p-1">
                       @if (!!infoReport.price) {
 
                         @if(!!infoReport.price.price && !!infoReport.price.currency) {
@@ -96,7 +96,7 @@
                     } @else if (infoReport.price?.numReports == 0) {
                       <a href="/deals">
                         <h4 class="mt-4">{{'ERROR.NO_CREDITS' | translate: {Default: 'Not enough credits, please recharge'} }}</h4>
-                        <img alt="car croc" class="cursor-default" src="assets/check/nc.png" >
+                        <img alt="CarCroc auto car reports CarFax Windows Stickers AutoCheck"class="cursor-default" src="assets/check/nc.png" >
                       </a>
                     }
                   </div>

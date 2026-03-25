@@ -1,16 +1,16 @@
 <div class="m-0 p-0">
     @if (!!translationService.currentLang) {
     <button mat-button [matMenuTriggerFor]="langMenu" #langMenuTrigger="matMenuTrigger" class="lang-btn">
-        <img alt="CarCroc Car Croc" [src]="'assets/img/flags/'+translationService.currentLang+'.svg'" width="18" [alt]="translationService.currentLang">
+        <img alt="CarCroc auto car reports CarFax Windows Stickers AutoCheck"[src]="'assets/img/flags/'+translationService.currentLang+'.svg'" width="18" [alt]="translationService.currentLang">
     </button>
     <mat-menu #langMenu="matMenu" [overlapTrigger]="false">
         <span (mouseleave)="langMenuTrigger.closeMenu()">
             <button mat-menu-item (click)="changeLang('en')">
-                <img loadign="lazy" alt="CarCroc Car Croc" [src]="'assets/img/flags/en.svg'" width="18">
+                <img alt="CarCroc auto car reports CarFax Windows Stickers AutoCheck"loadign="lazy" [src]="'assets/img/flags/en.svg'" width="18">
                 <span class="flag-name">{{getLangName('en')}}</span>
             </button>
             <!-- <button mat-menu-item (click)="changeLang('bg')">
-                <img loadign="lazy" alt="CarCroc Car Croc" [src]="'assets/img/flags/bg.svg'" width="18">
+                <img alt="CarCroc auto car reports CarFax Windows Stickers AutoCheck"loadign="lazy" [src]="'assets/img/flags/bg.svg'" width="18">
                 <span class="flag-name">{{getLangName('bg')}}</span>
             </button> -->
         </span>

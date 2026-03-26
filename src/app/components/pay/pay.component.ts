@@ -182,6 +182,6 @@ export class PayComponent {
     if (type == ReportTypes.ST) {
       return 'assets/icons/window-stickers.png';
     }
-    return '';
+    return 'assets/icons/logo.png';
   }
 }

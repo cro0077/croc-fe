@@ -105,6 +105,7 @@ export class ReportGenComponent {
         dialogRef.afterClosed().subscribe(res => {
             if(!!res) {
               this.getLoading = true;
+                this.cdRef.markForCheck();
               this.getReportWithKeySubscription = this.reportService.getReportWithKey(request.type, request.vin, request.key!).subscribe({
                 
                 next: res => {
@@ -116,17 +117,17 @@ export class ReportGenComponent {
                     }
                     selectedReportInfo.disable = true;
                   }
+                  this.getLoading = false;
                   this.cdRef.markForCheck();
                   this.cdRef.detectChanges();
-                  this.getLoading = false;
                 },
                 error: err => {
                   if (err.status == 402 && !this.noCreditsError) {
                     this.noCreditsError = true;
+                    this.getLoading = false;
                     this.cdRef.markForCheck();
                     this.cdRef.detectChanges();
                   }
-                  this.getLoading = false;
                   throw err;
                 }
               }) 

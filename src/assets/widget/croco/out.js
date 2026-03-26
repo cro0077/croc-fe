@@ -538,9 +538,14 @@
       .catch(err => alert('Request failed: ' + err.message));
     });
 
-    // Hide optional show-button if present
-    const showBtn = document.getElementById('carcrocButtonShowBYOpt');
-    if (showBtn) showBtn.style.display = 'none';
+    const intervalBtn = setInterval(() => {
+      // Hide optional show-button if present
+      const showBtn = document.getElementById('carcrocButtonShowBYOpt');
+      if (showBtn) {
+        showBtn.style.display = 'none';
+        clearInterval(intervalBtn);
+      }
+    }, 300);
   }
 
   // ─── STYLE INJECTION (once) ─────────────────────────────────────────────────
@@ -556,13 +561,17 @@
   function waitForDivAndInject(targetId) {
     const interval = setInterval(() => {
       const container = document.getElementById(targetId);
-      if (!container || container.dataset.carcrocDone) return;
+      if (!container || container.dataset.carcrocDone) {
+        const showBtn = document.getElementById('carcrocButtonShowBYOpt');
+        if (showBtn) showBtn.style.display = 'none';
+        return;
+      }
 
       clearInterval(interval);
       container.dataset.carcrocDone = 'true';
       injectStyles();
       initWidget(container);
-    }, 300);
+    }, 400);
   }
 
   // ─── PUBLIC API ─────────────────────────────────────────────────────────────

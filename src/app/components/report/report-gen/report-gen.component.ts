@@ -104,6 +104,7 @@ export class ReportGenComponent {
 
         dialogRef.afterClosed().subscribe(res => {
             if(!!res) {
+              this.getLoading = true;
               this.getReportWithKeySubscription = this.reportService.getReportWithKey(request.type, request.vin, request.key!).subscribe({
                 
                 next: res => {
@@ -117,6 +118,7 @@ export class ReportGenComponent {
                   }
                   this.cdRef.markForCheck();
                   this.cdRef.detectChanges();
+                  this.getLoading = false;
                 },
                 error: err => {
                   if (err.status == 402 && !this.noCreditsError) {
@@ -124,6 +126,7 @@ export class ReportGenComponent {
                     this.cdRef.markForCheck();
                     this.cdRef.detectChanges();
                   }
+                  this.getLoading = false;
                   throw err;
                 }
               }) 

@@ -105,7 +105,7 @@ export class ReportGenComponent {
         dialogRef.afterClosed().subscribe(res => {
             if(!!res) {
               this.getLoading = true;
-                this.cdRef.markForCheck();
+              this.cdRef.markForCheck();
               this.getReportWithKeySubscription = this.reportService.getReportWithKey(request.type, request.vin, request.key!).subscribe({
                 
                 next: res => {

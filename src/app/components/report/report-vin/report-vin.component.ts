@@ -12,13 +12,14 @@ import { ReportService } from '../../../../services/report/report.service';
 import { MatAccordion, MatExpansionModule } from '@angular/material/expansion';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
+import { DealsComponent } from '../../deals/deals';
 
 @Component({
   selector: 'app-report-vin',
   standalone: true,
   imports: [MatProgressSpinnerModule, TranslateModule, MatButtonModule, 
             MatIconModule, MatInputModule, MatFormFieldModule, ReactiveFormsModule,
-            MatAccordion, MatExpansionModule],
+            MatAccordion, MatExpansionModule, DealsComponent],
   templateUrl: './report-vin.component.html',
   styleUrl: './report-vin.component.scss',
   providers: [DecimalPipe]

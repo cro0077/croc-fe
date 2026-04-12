@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Inject, PLATFORM_ID } from '@angular/core';
+import { ChangeDetectorRef, Component, Inject, Input, PLATFORM_ID } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatMenuModule } from "@angular/material/menu";
 import { MatButton } from '@angular/material/button';
@@ -18,6 +18,8 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './deals.scss'
 })
 export class DealsComponent {
+
+  @Input("intro") showIntro = true;
 
   packageDeals: Deal[] = [];
   pricePerOne: number = 3.99;

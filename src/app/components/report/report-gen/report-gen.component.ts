@@ -68,6 +68,9 @@ export class ReportGenComponent {
           this.showConfirmBtn = false;
           this.searchLoading = false;
           this.searchNotFoundError = false;
+          if (!!this.searchBaseError) {
+            this.searchBaseError = false;
+          }
           this.cdRef.markForCheck();
           this.cdRef.detectChanges();
         },

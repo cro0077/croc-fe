@@ -55,11 +55,13 @@ export class ReportInfoComponent {
           error: (err: any) => {
             this.noData = true;
             this.getLoading = false;
+            this.cdRef.markForCheck();
           }
         })
       } else {
         this.getLoading = false;
         this.noData = true;
+        this.cdRef.markForCheck();
       }
     }
   }
@@ -71,8 +73,15 @@ export class ReportInfoComponent {
 
   loadReport() {
     if (!!this._generatedReport) {
-      const uncodedDAta = atob(this._generatedReport.data);
+      let uncodedDAta;
+      if (!!this._generatedReport.data.bytes) {
+        uncodedDAta = atob(this._generatedReport.data.bytes);
+      } else {
+        uncodedDAta = atob(this._generatedReport.data.data);
+      }
+      
       const byteArray = new Uint8Array(uncodedDAta.split('').map(char => char.charCodeAt(0)));
+
 
       let blob;
       if (!!this._generatedReport.isPdf)
@@ -85,7 +94,15 @@ export class ReportInfoComponent {
       this.getLoading = false;
       this.cdRef.markForCheck();
       this.cdRef.detectChanges();
+    }
   }
+
+  public toBinaryStr(str: string) {
+    const encoder = new TextEncoder();
+    // 1: split the UTF-16 string into an array of bytes
+    const charCodes = encoder.encode(str);
+    // 2: concatenate byte data to create a binary string
+    return String.fromCharCode(...charCodes);
   }
 
   public copyLink() {

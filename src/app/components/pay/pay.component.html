@@ -18,6 +18,9 @@
             <img alt="CarCroc ( CarFax or AutoCheck ) auto car reports CarFax Windows Stickers AutoCheck"[src]="getReportIcon(type!)" class="m-1">
           </button>
         </div>
+        @if (!!title) {
+          <h4>{{title}}</h4>
+        }
         @if (!!vin) {
           <h3>VIN: {{vin}}</h3>
         }

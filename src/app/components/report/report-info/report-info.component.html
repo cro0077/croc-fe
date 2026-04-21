@@ -5,6 +5,10 @@
         <div class="w-100 flex-center">
           <mat-spinner class="m-2" diameter="95"></mat-spinner>
         </div>
+        
+        <div class="m-5 text-center">
+          <h1>{{'LOADING' | translate: {Default: 'Loading '} }}</h1>
+        </div>
       } 
       @if (!!_generatedReport) {
         <div class="flex-row-wrap">
@@ -27,7 +31,7 @@
             }
           </div>
         </div>
-      } @else {
+      } @else if (!getLoading) {
         <div class="m-5 text-center">
           <h1>{{'ERROR.NO_DATA' | translate: {Default: 'No data! '} }}</h1>
         </div>

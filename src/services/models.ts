@@ -1,7 +1,12 @@
 export interface ReportDataResponse {
-  data: string;
+  data: FileData;
   path: string;
   isPdf: boolean;
+}
+
+export interface FileData {
+  bytes: string;
+  data: string;
 }
 
 export interface ReportAccHistoryResponse {
@@ -14,6 +19,7 @@ export interface ReportAccHistoryResponse {
 
 export interface FindReportsResponse {
   vin: string;
+  vehicle?: string;
   infos: ReportInfo[];
 }
 
@@ -36,6 +42,7 @@ export interface ReportRequest {
   num: string;
   key?: string;
   priceReport?: Price;
+  vehicle?: string;
 }
 export enum ReportTypes {
   CF = "CF",
@@ -78,6 +85,7 @@ export interface Deal {
 export interface PayInitRequest {
   type: PayType;
   vin?: string;
+  vehicle?: string;
   paId?: number;
 }
 

@@ -56,16 +56,16 @@ export const routes: Routes = [
                 path: 'croco/:type/:vinId',
                 children: [
                     {
-                        path: '',
-                        component: PayComponent
-                    },
-                    {
                         path: 'failure',
                         component: ErrorPayComponent
                     },
                     {
                         path: 'success',
                         component: SuccessPayComponent
+                    },
+                    {
+                        path: ':title',
+                        component: PayComponent
                     },
                 ]
             }

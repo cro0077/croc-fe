@@ -395,6 +395,8 @@
               .then(function(data) {
                 if (!!data && !!data.price) {
                   document.getElementById('succsess-croco').classList.add('opencroco');
+                  document.getElementById('title-c-croco').innerHtml = data.vehicle;
+
                   if (data.price.price > 0) {
                     document.getElementById('val-p-success').innerHTML = data.price.price + ' ' + data.price.currency;
                     document.getElementById('val-p-confirm').innerHTML = data.price.price + ' ' + data.price.currency;
@@ -429,13 +431,15 @@
         <button id="succsess-croco" class="report-result btnReport btnReport-confirm"
             onclick="
               const keyReport = document.getElementById('keyRInput').value.trim();
+
               if (!keyReport && document.getElementById('idPh').innerText.trim() != 'key') {
                 var vinRep = document.getElementById('vinRInput').value.trim();
+                const vehicle = document.getElementById('title-c-croco').innerHtml.trim();
 
                 fetch('https://serve.carcroc.com/croco/init', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ vin: vinRep, type: 'CF', crocKey: '${crocKey}' })
+                  body: JSON.stringify({ vin: vinRep, type: 'CF', vehicle: vehicle, crocKey: '${crocKey}' })
                 })
                 .then(function(res) {
                   if(res.ok) {
@@ -467,6 +471,7 @@
               }
             ">
           <div class="report-result-success">
+            <span id="title-c-croco"></span>
             <span class="i">&#10004;</span>
             <span>Success!</span>
             <h5 id="val-p-success"></h5>
@@ -604,6 +609,7 @@
               onclick="
               var vinRep = document.getElementById('vinRInput').value.trim();
               var keyReport = document.getElementById('keyRInput').value.trim();
+              const vehicle = document.getElementById('title-c-croco').innerHtml.trim();
                 
               fetch('https://serve.carcroc.com/croco/get', {
                   method: 'POST',
@@ -612,7 +618,8 @@
                     { 
                       type: 'CF',
                       vin: vinRep,
-                      key: keyReport
+                      key: keyReport,
+                      vehicle: vehicle
                     }
                   )
                 })

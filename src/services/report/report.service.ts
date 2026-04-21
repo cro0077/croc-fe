@@ -29,11 +29,12 @@ export class ReportService {
     });
   }
   
-  public getReportWithKey(type: ReportTypes | string, vin: string, key: string): Observable<PayStatusResponse> {
+  public getReportWithKey(type: ReportTypes | string, vin: string, vehicle: string | undefined, key: string): Observable<PayStatusResponse> {
     return this.http.post<PayStatusResponse>(`${environment.apiUrl}/report/get`, {
       type: type,
       vin: vin,
-      key: key
+      key: key,
+      vehicle: vehicle
     });
   }
 }

@@ -25,6 +25,7 @@ export class PayComponent {
   public type?: string | null;
   private isReportType = false;
   public vin?: string;
+  public title?: string | null;
   public packageId?: number;
 
   public showActionButtons = true;
@@ -88,6 +89,9 @@ export class PayComponent {
     if (!vinIdOrPackageParam) {
       this.onCancel();
     }
+    
+    this.title = this.activatedRoute.snapshot.paramMap.get('title');
+    
     this.showActionButtons = !this.route.url.includes("success") && !this.route.url.includes("failure");
     
     if (this.type == PayType.PACF) {  
@@ -128,7 +132,8 @@ export class PayComponent {
               if (!!this.price) {
                 this.payService.initReport({
                     type: this.type as PayType,
-                    vin: this.vin
+                    vin: this.vin,
+                    vehicle: this.title || undefined
                 }).subscribe((res: PayUpdateResponse) => {
                   this.payId = res.id;
                   this.loading = false;

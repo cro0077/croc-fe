@@ -53,6 +53,7 @@
   "HOUR": "Hour",
   "MINS": "Minutes",
   "MIN": "Minute",
+  "LOADING": "Loading",
   "ERROR": {
     "BAD_PHONE": "Invalid phone number",
     "PHONE_HINT": "Must start with + or 0 and contain between 10 and 12 digits",

@@ -109,7 +109,7 @@ export class ReportGenComponent {
             if(!!res) {
               this.getLoading = true;
               this.cdRef.markForCheck();
-              this.getReportWithKeySubscription = this.reportService.getReportWithKey(request.type, request.vin, request.key!).subscribe({
+              this.getReportWithKeySubscription = this.reportService.getReportWithKey(request.type, request.vin, request.vehicle, request.key!).subscribe({
                 
                 next: res => {
                   this.generatedReport = res.report;
@@ -138,7 +138,7 @@ export class ReportGenComponent {
           }
         );
       } else {
-        this.route.navigate([`/croco/${request.type}/${request.vin}`],
+        this.route.navigate([`/croco/${request.type}/${request.vin}/${request.vehicle}`],
             {queryParams: {key: request.key}});
       }
 

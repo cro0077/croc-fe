@@ -125,7 +125,7 @@ export class ReportVinComponent implements OnDestroy {
         
       //   dialogRef.afterClosed().subscribe(res => {
       //       if(!!res) {
-      //         // this.reportService.getReportWithKey(type, vin, key).subscribe(res => {
+      //         // this.reportService.getReportWithKey(type, vin, ??, key).subscribe(res => {
 
       //         // })
       //       }
@@ -138,7 +138,8 @@ export class ReportVinComponent implements OnDestroy {
           type: type,
           num: num,
           key: key,
-          priceReport: priceReport
+          priceReport: priceReport,
+          vehicle: this.reportInfo?.vehicle
         });
       // }
     }

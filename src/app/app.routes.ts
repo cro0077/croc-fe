@@ -64,6 +64,10 @@ export const routes: Routes = [
                         component: SuccessPayComponent
                     },
                     {
+                        path: '',
+                        component: PayComponent
+                    },
+                    {
                         path: ':title',
                         component: PayComponent
                     },
